@@ -1,10 +1,10 @@
-
+import './styles.css'
 import { Link } from 'react-router-dom';
 
 function Homepage() {
   return (
     <>
-       <div className="homepage grid grid-rows-3 lg:grid-rows-4 lazy bg-center  bg-cover bg-no-repeat" data-testid="homepage-container">
+       <div className="homepage grid grid-rows-3 lg:grid-rows-4 lazy " data-testid="homepage-container">
 
          <div className="grid grid-cols-2 w-5/6 mx-auto py-8 font-bold">
            <div className="justify-self-start">
