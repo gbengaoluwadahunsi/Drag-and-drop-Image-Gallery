@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # React + Vite
 
 # DragImagery
@@ -26,4 +27,6 @@ To run this project locally, follow these steps:
 
 6. When you are done, you can log out by clicking the log out button at the top-left corner
 
-Happy viewing....
+Happy viewing...
+# Drag-and-drop-Image-Gallery
+>>>>>>> c4cb3cb0dea7529b5389203e38c8f886b4526aa6
