@@ -200,9 +200,9 @@
 
 import { useState, useEffect } from 'react';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { auth } from '../../firebase';
+import { auth } from './firebase';
 import { useNavigate } from 'react-router-dom';
-import Footer from '../Footer';
+import Footer from './Footer';
 
 const AuthDetailsComponent = () => {
   const [authUser, setAuthUser] = useState(null);

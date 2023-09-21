@@ -1,8 +1,8 @@
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import ImageGallery from './components/auth/ImageGallery'
-import HomePage from './components/Homepage';
-import AuthenticationPage from './components/auth/AuthenticationPage';
+import ImageGallery from './ImageGallery'
+import HomePage from './Homepage';
+import AuthenticationPage from './AuthenticationPage';
 
 const App = () => {
   return (
