@@ -8,6 +8,7 @@
   line-height: 1.5;
   font-weight: 400;
   min-height: 100vh;
+ 
   
 
 
@@ -87,6 +88,17 @@ button:focus-visible {
    
   }
   
+}
+
+.homepage{
+  background-image:url('/peace.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.button{
+  width : 100%;
 }
 
 

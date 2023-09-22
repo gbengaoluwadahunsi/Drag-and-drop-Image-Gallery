@@ -2,7 +2,8 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import ImageGallery from './ImageGallery'
 import HomePage from './Homepage';
-import AuthenticationPage from './AuthenticationPage';
+import SignUp from './SignUp'
+import Login from './Login';
 
 const App = () => {
   return (
@@ -10,7 +11,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/imagegallery" element={<ImageGallery />} />
-        <Route path="/authenticate" element={<AuthenticationPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path='/sign-up'      element= {<SignUp />} />
       </Routes>
     </Router>
   );

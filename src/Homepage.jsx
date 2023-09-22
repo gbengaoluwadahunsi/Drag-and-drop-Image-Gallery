@@ -1,4 +1,4 @@
-import './styles.css'
+import './index.css'
 import { Link } from 'react-router-dom';
 
 
@@ -8,7 +8,7 @@ function Homepage() {
   return (
     <>
      
-       <div className="homepage grid grid-rows-3 lg:grid-rows-4 lazy " data-testid="homepage-container">
+       <div className="homepage  h-screen grid grid-rows-3 lg:grid-rows-4 lazy " data-testid="homepage-container">
 
          <div className="grid grid-cols-2 w-5/6 mx-auto py-8 font-bold">
            <div className="justify-self-start">
@@ -17,7 +17,7 @@ function Homepage() {
 
            <div className="justify-self-end"> 
              <span className="bg-gradient-to-r from-green-400 to-blue-400 rounded hover:from-pink-500 hover:to-rose-500 cursor-pointer p-2">
-               <Link to={"/authenticate"} data-testid="homepage-login-link">Sign In</Link>              
+               <Link to={"/login"} data-testid="homepage-login-link">Sign In</Link>              
              </span>
            </div>
 
@@ -31,7 +31,7 @@ function Homepage() {
               DropImagery is an image space where some stunning camera moments captured by awesome photographers are displayed, feel free to move the pictures around and you can also save them to your devices.
             </p>
             <span className="px-8 py-1 cursor-pointer rounded mt-2 inline-block bg-rose-700" data-testid="homepage-get-started-button">
-              <Link className='text-white' to={"/authenticate"}>Get Started  &gt; </Link>
+              <Link className='text-white' to={"/login"}>Get Started  &gt; </Link>
             </span>
             
          </div>
