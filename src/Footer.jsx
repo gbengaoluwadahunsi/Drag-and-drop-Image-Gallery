@@ -1,4 +1,6 @@
 
+import { Link } from "react-router-dom";
+
 
 function Footer() {
   return (
@@ -8,7 +10,7 @@ function Footer() {
           className='inline-block cursor-pointer bg-gradient-to-r from-green-400 to-blue-400 hover:from-pink-500 hover:to-rose-500 rounded p-2'
           data-testid="footer-drop-imagery"
         >
-          DropImagery
+         <Link to = "/imagegallery"> DropImagery</Link>
         </span>
         <span className='block py-4 text-xs' data-testid="footer-copyright">
           &copy; Gbenga Oluwadahunsi 2023
