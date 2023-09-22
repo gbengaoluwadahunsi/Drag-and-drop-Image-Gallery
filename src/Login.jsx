@@ -67,21 +67,21 @@ const LogIn = () => {
             placeholder='Enter your Email'
             onChange={(e) => setEmail(e.target.value)}
             required
-            className='rounded h-10 ml-2 pl-[14px] focus:outline-none text-gray-900 w-full '
+            className='rounded h-10  pl-[14px] focus:outline-none text-gray-900 w-full '
           />
         </div>
-        <div className=''>
+        <div>
           <input
             type="password"
             value={password}
             placeholder='Enter your Password'
             onChange={(e) => setPassword(e.target.value)}
             required
-            className='rounded h-10 ml-2 pl-[14px] focus:outline-none text-gray-900 w-full  '
+            className='rounded h-10  pl-[14px] focus:outline-none text-gray-900 w-full'
           />
         </div>
         <div>
-          <button className="button bg-blue-400  w-70" type="submit" disabled={isLoading}>
+          <button className=" bg-blue-400 rounded w-5/6 py-2" type="submit" disabled={isLoading}>
             {authUser ? 'Log Out' : 'Log In'}
           </button>
         </div>
