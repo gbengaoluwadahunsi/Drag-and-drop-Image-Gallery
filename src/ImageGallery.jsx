@@ -186,7 +186,7 @@ const ImageGallery = () => {
                           value={searchQuery}
                           onChange={handleSearch}
                           placeholder="Search by photographer..."
-                          className="p-2 rounded-l-full md:w-3/4 lg:w-3/4  pl-[20px] md:pl-[50px] lg:pl-[50px] focus:outline-none"
+                          className="p-2 rounded-l-full md:w-3/4 lg:w-3/4  pl-[10px] md:pl-[50px] lg:pl-[50px] focus:outline-none"
                           data-testid="search-input"
                         />
                         <button type="submit" className=" spano cursor-pointer bg-blue-700 rounded-r-full text-white  px-4  ">
