@@ -1,6 +1,7 @@
 import './index.css'
 import { Link } from 'react-router-dom';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAnglesRight } from '@fortawesome/free-solid-svg-icons';
 
 function Homepage() {
 
@@ -30,9 +31,12 @@ function Homepage() {
             <p className="bg-black p-2 bg-opacity-50 text-white" data-testid="homepage-description">
               DropImagery is an image space where some stunning camera moments captured by awesome photographers are displayed, feel free to move the pictures around and you can also save them to your devices.
             </p>
+           
+            <Link className='text-white' to={"/login"}>
             <span className="px-8 py-1 cursor-pointer rounded mt-2 inline-block bg-rose-700" data-testid="homepage-get-started-button">
-              <Link className='text-white' to={"/login"}>Get Started  &gt; </Link>
+              Get Started  <FontAwesomeIcon icon={faAnglesRight} />
             </span>
+            </Link>
             
          </div>
 

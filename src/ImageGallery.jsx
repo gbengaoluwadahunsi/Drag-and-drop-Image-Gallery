@@ -1,10 +1,9 @@
-
-
-
 import { useState, useEffect } from 'react';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth } from './firebase';
 import { useNavigate } from 'react-router-dom';
+import { SpinnerCircularFixed } from 'spinners-react';
+
 import Footer from './Footer';
 
 const AuthDetailsComponent = () => {
@@ -29,7 +28,7 @@ const AuthDetailsComponent = () => {
     signOut(auth)
       .then(() => {
         console.log('sign out successful');
-        navigate('/'); // Navigate to the home page after logout
+        navigate('/');
       })
       .catch((error) => {
         console.log(error);
@@ -89,7 +88,7 @@ const ImageGallery = () => {
 
   const handleSearch = (e) => {
     setSearchQuery(e.target.value);
-    setSearched(false); // Reset searched flag when typing
+    setSearched(false);
   };
 
   const filteredImages = images.filter((photo) =>
@@ -167,72 +166,74 @@ const ImageGallery = () => {
 
   return (
     <div data-testid="image-gallery-container">
-      <AuthDetailsComponent data-testid="auth-details-component" />
-      <div className='grid place-items-center'>
-        <span className="cursor-pointer bg-gradient-to-r from-green-400 to-blue-400 text-3xl font-extrabold hover:from-pink-500 hover:to-rose-500 rounded px-6 py-2">
-          DropImagery
-        </span>
-      </div>
+      <section className='bg-slate-950'>
+               <div className=''>
+                  <span className="cursor-pointer bg-gradient-to-r from-green-400 to-blue-400 text-3xl font-extrabold hover:from-pink-500 hover:to-rose-500 rounded px-6 py-2">
+                    DropImagery
+                  </span>
+                </div>               
+
+
+
+                <form onSubmit={handleSearchSubmit}>
+                      <div className="flex items-center  lg:mr-8 my-2">
+                        <input
+                          type="text"
+                          value={searchQuery}
+                          onChange={handleSearch}
+                          placeholder="Search by photographer..."
+                          className="p-2 rounded border-rose-700 border-2 focus:outline-none"
+                          data-testid="search-input"
+                        />
+                        <button type="submit" className="ml-2 bg-rose-700 text-white px-4 py-2 rounded">
+                          Search
+                        </button>
+                      </div>
+                    </form>
+
+                    <AuthDetailsComponent data-testid="auth-details-component" />
+      </section>
+
       <div className='mx-auto text-center min-h-screen flex flex-col'>
         <div className='flex-grow'>
-          <form onSubmit={handleSearchSubmit}>
-            <div className="flex items-center justify-center lg:justify-end lg:mr-8 my-2">
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={handleSearch}
-                placeholder="Search by photographer..."
-                className="p-2 rounded border-rose-700 border-2 focus:outline-none"
-                data-testid="search-input"
-              />
-              <button type="submit" className="ml-2 bg-rose-700 text-white px-4 py-2 rounded">
-                Search
-              </button>
+          
+          
+          {loading ? (
+            <div className="flex text-blue-500 justify-center mt-4">
+              <SpinnerCircularFixed color= "" size={50} />
             </div>
-          </form>
-          <div className="image-gallery bg-slate-950 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 py-6 px-8 gap-4">
-            {loading && (
-              <div className="flex justify-center items-center w-full h-full" data-testid="loading-spinner">
-                <span
-                  className="animate-spin rounded-full h-32 text w-32 border-t-2 border-b-2 border-gray-900"
-                  style={{
-                    borderColor: 'gray',
-                  }}
-                ></span>
-              </div>
-            )}
-
-            {error && <div style={{ color: 'red' }}>{error}</div>}
-
-            {errorMessage}
-
-            {filteredImages.map((photo) => (
-              <div
-                key={photo.id}
-                className="relative aspect-w-[1]"
-                draggable
-                onDragStart={(e) => handleDragStart(e, photo.id)}
-                onDragOver={handleDragOver}
-                onDrop={(e) => handleDrop(e, photo.id)}
-                onTouchStart={(e) => handleTouchStart(e, photo.id)}
-                onTouchMove={handleTouchMove}
-                onTouchEnd={(e) => handleTouchEnd(e, photo.id)}
-                data-testid={`image-${photo.id}`}
-              >
-                <img
-                  src={photo.src.large}
-                  alt={photo.photographer ? photo.photographer : ''}
-                  className="object-cover w-full h-60 rounded-lg border-4 "
-                  loading='lazy'
-                />
-                <div className="absolute p-2 text-sm rounded bottom-2 left-2 text-slate-950 font-medium bg-white">
-                  {photo.photographer && (
-                    <span className="tag">{photo.photographer}</span>
-                  )}
+          ) : (
+            <div className="image-gallery grid grid-cols-2 lg:grid-cols-4 py-6 px-8 gap-4">
+              {error && <div style={{ color: 'red' }}>{error}</div>}
+              {errorMessage}
+              {filteredImages.map((photo) => (
+                <div
+                  key={photo.id}
+                  className="relative aspect-w-[1]"
+                  draggable
+                  onDragStart={(e) => handleDragStart(e, photo.id)}
+                  onDragOver={handleDragOver}
+                  onDrop={(e) => handleDrop(e, photo.id)}
+                  onTouchStart={(e) => handleTouchStart(e, photo.id)}
+                  onTouchMove={handleTouchMove}
+                  onTouchEnd={(e) => handleTouchEnd(e, photo.id)}
+                  data-testid={`image-${photo.id}`}
+                >
+                  <img
+                    src={photo.src.large}
+                    alt={photo.photographer ? photo.photographer : ''}
+                    className="object-cover w-full h-60 rounded-lg "
+                    loading='lazy'
+                  />
+                  <div className="absolute p-2 text-sm  bottom-2 left-2 text-slate-950 font-medium bg-white">
+                    {photo.photographer && (
+                      <span className="tag">{photo.photographer}</span>
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
         <Footer className='fixed bottom-0 w-full bg-gray-200 p-4' />
       </div>
