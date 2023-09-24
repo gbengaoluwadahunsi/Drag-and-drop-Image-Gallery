@@ -3,7 +3,6 @@ import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth } from './firebase';
 import { useNavigate } from 'react-router-dom';
 import { SpinnerCircularFixed } from 'spinners-react';
-
 import Footer from './Footer';
 
 const AuthDetailsComponent = () => {
@@ -36,11 +35,12 @@ const AuthDetailsComponent = () => {
   };
 
   return (
-    <div className='m-4' data-testid="auth-details"> 
+    <div  data-testid="auth-details"> 
       {authUser ? (
         <>
-          <p data-testid="logged-in-text">{`Logged In as ${authUser.email}`}</p>
-          <button data-testid="log-out-button" onClick={userLogOut}>Log Out</button>
+          
+          <span className = " -mt-2 h-3/4 p-2 bg-blue-400  hover:bg-blue-800 rounded outline-none"  data-testid="log-out-button" onClick={userLogOut}>Log Out</span>
+          {/* <p className='text-white text-xs'  data-testid="logged-in-text">{`Logged In as ${authUser.email}`}</p> */}
         </>
       ) : (
         <p data-testid="logged-out-text">Logged Out</p>
@@ -99,7 +99,7 @@ const ImageGallery = () => {
 
   if (searched && filteredImages.length === 0) {
     errorMessage = (
-      <div className="col-span-full text-white text-center" data-testid="no-results-message">
+      <div className="col-span-full  text-center" data-testid="no-results-message">
         Oops, &quot;{searchQuery}&quot; works are not here at the moment. Kindly check back later.
       </div>
     );
@@ -165,33 +165,37 @@ const ImageGallery = () => {
   };
 
   return (
-    <div data-testid="image-gallery-container">
-      <section className='bg-slate-950'>
-               <div className=''>
-                  <span className="cursor-pointer bg-gradient-to-r from-green-400 to-blue-400 text-3xl font-extrabold hover:from-pink-500 hover:to-rose-500 rounded px-6 py-2">
-                    DropImagery
-                  </span>
-                </div>               
+    <div  className= "" data-testid="image-gallery-container ">
+      <section className='bg-slate-950 py-10 p-4'>
+              <div className='grid grid-cols-2 p-4 content-center '>
+                <div className="justify-self-start">
+                    <span className="cursor-pointer  bg-gradient-to-r from-green-400 to-blue-400 hover:from-pink-500 hover:to-rose-500 rounded p-2" data-testid="homepage-logo">DropImagery</span>
+                </div>           
+
+                <div className='justify-self-end mb-1 bg-red-600'>
+                <AuthDetailsComponent data-testid="auth-details-component" />
+                </div>
+              </div>
 
 
 
-                <form onSubmit={handleSearchSubmit}>
-                      <div className="flex items-center  lg:mr-8 my-2">
+                <form className=' mt-6 mx-auto text-center' onSubmit={handleSearchSubmit}>
+                      <div className=' lg:w-3/4  mx-auto text-center'>
                         <input
                           type="text"
                           value={searchQuery}
                           onChange={handleSearch}
                           placeholder="Search by photographer..."
-                          className="p-2 rounded border-rose-700 border-2 focus:outline-none"
+                          className="p-2 rounded-l-full md:w-3/4 lg:w-3/4  md:pl-[50px] lg:pl-[50px] focus:outline-none"
                           data-testid="search-input"
                         />
-                        <button type="submit" className="ml-2 bg-rose-700 text-white px-4 py-2 rounded">
+                        <button type="submit" className=" spano cursor-pointer bg-blue-700 rounded-r-full text-white  px-4  ">
                           Search
                         </button>
                       </div>
                     </form>
 
-                    <AuthDetailsComponent data-testid="auth-details-component" />
+                   
       </section>
 
       <div className='mx-auto text-center min-h-screen flex flex-col'>
@@ -203,7 +207,7 @@ const ImageGallery = () => {
               <SpinnerCircularFixed color= "" size={50} />
             </div>
           ) : (
-            <div className="image-gallery grid grid-cols-2 lg:grid-cols-4 py-6 px-8 gap-4">
+            <div className="image-gallery grid grid-cols-2 mt-10 md:grid-cols-3 lg:grid-cols-4 py-6 px-2 lg:px-8 gap-4">
               {error && <div style={{ color: 'red' }}>{error}</div>}
               {errorMessage}
               {filteredImages.map((photo) => (
@@ -222,10 +226,10 @@ const ImageGallery = () => {
                   <img
                     src={photo.src.large}
                     alt={photo.photographer ? photo.photographer : ''}
-                    className="object-cover w-full h-60 rounded-lg "
+                    className="object-cover w-full  h-32 md:h-60 lg:h-60 rounded-lg "
                     loading='lazy'
                   />
-                  <div className="absolute p-2 text-sm  bottom-2 left-2 text-slate-950 font-medium bg-white">
+                  <div className="absolute  text-xs p-2 lg:text-sm  bottom-2 left-2 text-slate-950 font-medium bg-white">
                     {photo.photographer && (
                       <span className="tag">{photo.photographer}</span>
                     )}
