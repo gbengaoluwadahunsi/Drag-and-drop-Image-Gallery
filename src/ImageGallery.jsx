@@ -99,7 +99,7 @@ const ImageGallery = () => {
 
   if (searched && filteredImages.length === 0) {
     errorMessage = (
-      <div className="col-span-full  text-center" data-testid="no-results-message">
+      <div className="col-span-full text-gray-950  text-center" data-testid="no-results-message">
         Oops, &quot;{searchQuery}&quot; works are not here at the moment. Kindly check back later.
       </div>
     );
