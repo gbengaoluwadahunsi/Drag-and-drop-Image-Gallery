@@ -63,7 +63,7 @@ const Login = () => {
 
   return (
     <>
-      <div className=" homepage  h-screen " data-testid="login-page">
+      <div className="homepage h-screen" data-testid="login-page">
         <div className="grid grid-cols-2 w-5/6 mx-auto py-8 font-bold">
           <div className="justify-self-start">
             <span className="cursor-pointer bg-gradient-to-r from-green-400 to-blue-400 hover:from-pink-500 hover:to-rose-500 rounded p-2" data-testid="homepage-logo">
@@ -78,22 +78,29 @@ const Login = () => {
           </div>
         </div>
 
-        <div className='login bg-black  rounded w-3/4 md:w-2/4 lg:w-1/3 h-4/5'>
-          <form onSubmit={handleLogin} className='h-full grid grid-cols-1 rounded mx-auto text-center  p-4  md:p-10 lg:p-10 text-white'>
-            <div className="mx-auto text-center ">
-              <span className=' text-lg font-extrabold'><span className='block text-3xl'>Welcome back,</span > sign  in to your Account</span>
+        <div className='login bg-black rounded w-3/4 md:w-2/4 lg:w-1/3 h-4/5 mx-auto'>
+          <form onSubmit={handleLogin} className='h-full grid grid-cols-1 rounded text-center p-4 md:p-10 lg:p-10 text-white'>
+            <div className="mx-auto text-center mb-4">
+              <span className=' md:text-2xl lg:text-3xl font-extrabold block'>Welcome back,</span>
+              <span className=' md:text-2xl lg:2xl'>Sign in to your Account</span>
             </div>
-            <div>
+
+            <div className="mb-4">
+
               <input
                 type="email"
                 value={email}
                 placeholder='Enter your Email'
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className=' border-2 border-blue-700 rounded h-10 pl-[14px] focus:outline-none text-gray-900 w-full'
+                className='border-2 border-blue-700 rounded h-10 pl-[14px] focus:outline-none text-gray-900 w-full'
               />
+
             </div>
-            <div className='relative flex items-center'>
+
+            <div>
+
+            <div className='mb-4 relative flex items-center'>
               <input
                 type={showPassword ? 'text' : 'password'}
                 value={password}
@@ -102,6 +109,7 @@ const Login = () => {
                 required
                 className='border-2 border-blue-700 rounded h-10 pl-[14px] pr-10 focus:outline-none text-gray-900 w-full'
               />
+
               <button
                 type="button"
                 onClick={handleTogglePassword}
@@ -109,21 +117,25 @@ const Login = () => {
               >
                  <FontAwesomeIcon  className='text-xl' icon={showPassword ? faEye : faEyeSlash} />
               </button>
+
             </div>
-            <div>
-              <button className= " button bg-blue-700  hover:bg-blue-800 rounded  py-2" type="submit" disabled={isLoading}>
+            </div>
+
+            <div className='mb-4'>
+              <button className="button bg-blue-700 hover:bg-blue-800 rounded py-2 w-full" type="submit" disabled={isLoading}>
                 {authUser ? 'Sign Out' : 'Sign In'}
               </button>
             </div>
-            <div className= " text-xs grid grid-cols-2">
+
+            <div className="text-xs grid grid-cols-2 mb-2">
               <div className='justify-self-start'>
                 <input id="checkbox" type="checkbox" />
                 <label className='' htmlFor="checkbox"> Remember me</label>
               </div>
               <span className='lg:ml-10 justify-self-end'><Link to={'/'}>Need Help?</Link></span>          
             </div>
-            <div className=' text-xs text-start'>
-              <span className='text-gray-300 '>New to DropImagery? <span className='font-semibold '><Link to={'/sign-up'} className='text-white'>Sign Up Now</Link></span>.</span>
+            <div className='text-xs text-start'>
+              <span className='text-gray-300'>New to DropImagery? <span className='font-semibold'><Link to={'/sign-up'} className='text-white'>Sign Up Now</Link></span>.</span>
             </div>
           </form>
           {authUser && <p className='text-black'>{`Signed in as ${authUser.email}`}</p>}
