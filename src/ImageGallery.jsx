@@ -166,7 +166,7 @@ const ImageGallery = () => {
 
   return (
     <div  className= "" data-testid="image-gallery-container ">
-      <section className='bg-slate-950 py-10 p-4'>
+      <section className='bg-slate-950 py-10 p-4 fixed top-0 left-0 right-0 z-10'>
               <div className='grid grid-cols-2 p-4 content-center '>
                 <div className="justify-self-start">
                     <span className="cursor-pointer  bg-gradient-to-r from-green-400 to-blue-400 hover:from-pink-500 hover:to-rose-500 rounded p-2" data-testid="homepage-logo">DropImagery</span>
@@ -197,7 +197,7 @@ const ImageGallery = () => {
 
                    
       </section>
-
+      <div className='pt-60'>
       <div className='mx-auto text-center min-h-screen flex flex-col'>
         <div className='flex-grow'>
           
@@ -241,6 +241,7 @@ const ImageGallery = () => {
         </div>
         <Footer className='fixed bottom-0 w-full bg-gray-200 p-4' />
       </div>
+    </div>
     </div>
   );
 };

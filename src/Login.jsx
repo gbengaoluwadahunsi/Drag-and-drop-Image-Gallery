@@ -3,6 +3,8 @@ import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebas
 import { auth } from './firebase';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -10,6 +12,7 @@ const Login = () => {
   const [error, setError] = useState(null);
   const [authUser, setAuthUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -54,6 +57,10 @@ const Login = () => {
     setIsLoading(false);
   };
 
+  const handleTogglePassword = () => {
+    setShowPassword(prevState => !prevState);
+  };
+
   return (
     <>
       <div className=" homepage  h-screen " data-testid="login-page">
@@ -71,7 +78,7 @@ const Login = () => {
           </div>
         </div>
 
-        <div className='login bg-black opacity-80 rounded w-3/4 md:w-2/4 lg:w-1/3 h-4/5'>
+        <div className='login bg-black  rounded w-3/4 md:w-2/4 lg:w-1/3 h-4/5'>
           <form onSubmit={handleLogin} className='h-full grid grid-cols-1 rounded mx-auto text-center  p-4  md:p-10 lg:p-10 text-white'>
             <div className="mx-auto text-center ">
               <span className=' text-lg font-extrabold'><span className='block text-3xl'>Welcome back,</span > sign  in to your Account</span>
@@ -83,21 +90,28 @@ const Login = () => {
                 placeholder='Enter your Email'
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className='rounded h-10 pl-[14px] focus:outline-none text-gray-900 w-full'
+                className=' border-2 border-blue-700 rounded h-10 pl-[14px] focus:outline-none text-gray-900 w-full'
               />
             </div>
-            <div>
+            <div className='relative flex items-center'>
               <input
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 value={password}
                 placeholder='Enter your Password'
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className='rounded h-10 pl-[14px] focus:outline-none text-gray-900 w-full'
+                className='border-2 border-blue-700 rounded h-10 pl-[14px] pr-10 focus:outline-none text-gray-900 w-full'
               />
+              <button
+                type="button"
+                onClick={handleTogglePassword}
+                className="absolute right-0 mr-2 mt-1 text-blue-700 outline-none"
+              >
+                 <FontAwesomeIcon  className='text-xl' icon={showPassword ? faEye : faEyeSlash} />
+              </button>
             </div>
             <div>
-              <button className= " button bg-blue-400  hover:bg-blue-800 rounded  py-2" type="submit" disabled={isLoading}>
+              <button className= " button bg-blue-700  hover:bg-blue-800 rounded  py-2" type="submit" disabled={isLoading}>
                 {authUser ? 'Sign Out' : 'Sign In'}
               </button>
             </div>

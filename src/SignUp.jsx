@@ -2,10 +2,13 @@ import  { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth } from './firebase';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 const SignUp = () => {
   const [email, setUserName] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -22,6 +25,10 @@ const SignUp = () => {
         console.log(error);
         setError('Invalid registration, try again');
       });
+  };
+
+  const handleTogglePassword = () => {
+    setShowPassword(prevState => !prevState);
   };
 
   return (
@@ -41,7 +48,7 @@ const SignUp = () => {
           </div>
         </div>
 
-        <div className='login bg-black opacity-80 rounded w-3/4 md:w-2/4 lg:w-1/3 h-4/5'>
+        <div className='login bg-black  rounded w-3/4 md:w-2/4 lg:w-1/3 h-4/5'>
           <form onSubmit={handleSignUp}  className='h-full grid grid-cols-1 rounded mx-auto text-center gap-2 p-4 md:p-10 lg:p-10 text-white'>
             <div className="mx-auto text-center ">
               <span className=' md:text-2xl lg:text-3xl font-extrabold'>Create an  Account</span>
@@ -49,10 +56,10 @@ const SignUp = () => {
 
             <div className='grid grid-rows-1  text-black gap-2 lg:grid-cols-2 rounded'>
               <div className=''>
-                <input type="text" name="firstname" id="firstname" placeholder='First Name' className='rounded h-10 pl-[14px] focus:outline-none full  w-full' />
+                <input type="text" name="firstname" id="firstname" placeholder='First Name' className=' border-2 border-blue-700 rounded h-10 pl-[14px] focus:outline-none full  w-full' />
               </div>
               <div>
-                <input type="text" name="lastname" id="lastname" placeholder='Last Name' className='rounded  h-10 pl-[14px] focus:outline-none   w-full' />
+                <input type="text" name="lastname" id="lastname" placeholder='Last Name' className=' border-2 border-blue-700 rounded  h-10 pl-[14px] focus:outline-none   w-full' />
               </div>
             </div>
 
@@ -64,20 +71,27 @@ const SignUp = () => {
                 onChange={(e) => setUserName(e.target.value)}
                 required
                 data-testid="signup-email"
-                className='rounded mt-1 h-10 pl-[14px] focus:outline-none text-gray-900 w-full'
+                className=' border-2 border-blue-700 rounded mt-1 h-10 pl-[14px] focus:outline-none text-gray-900 w-full'
               />
             </div>
 
-            <div>
+            <div className='relative flex items-center'>
               <input
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 value={password}
                 placeholder='Enter your Password'
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 data-testid="signup-password"
-                className='rounded h-10 pl-[14px] focus:outline-none text-gray-900 w-full'
+                className='border-2 border-blue-700 rounded h-10 pl-[14px] pr-10 focus:outline-none text-gray-900 w-full'
               />
+              <button
+                type="button"
+                onClick={handleTogglePassword}
+                className="absolute right-0 mr-2 mt-1 text-blue-700 outline-none" 
+              >
+                <FontAwesomeIcon  className='text-xl' icon={showPassword ? faEye : faEyeSlash} />
+              </button>
             </div>
 
             <div className='text-xs justify-self-start'>
@@ -86,7 +100,7 @@ const SignUp = () => {
             </div>
 
             <div>
-              <button className= " button bg-blue-400  hover:bg-blue-800 rounded  py-2" type="submit"  data-testid="signup-button">Sign Up</button>
+              <button className= " button bg-blue-700  hover:bg-blue-800 rounded  py-2" type="submit"  data-testid="signup-button">Sign Up</button>
             </div>
 
           </form>
